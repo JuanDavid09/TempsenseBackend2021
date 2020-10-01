@@ -1,0 +1,57 @@
+
+namespace Tempsense.web
+{
+    using AutoMapper;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+    using Tempsense.Entities;
+    using Tempsense.Entities.Dtos.Dtos.Empresas;
+    using Tempsense.Entities.Dtos.Dtos.Login;
+    using Tempsense.Entities.Dtos.Dtos.Perfiles;
+    using Tempsense.Entities.Dtos.Dtos.Usuarios;
+
+    public class WebApiApplication : System.Web.HttpApplication
+    {
+        protected void Application_Start()
+        {
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+
+            GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            UnityConfig.RegisterComponents();
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<UsuariosDto,tbl_Usuarios>().ForMember(g => g.tbl_Empresas, opt => opt.Ignore())
+                                                          .ForMember(g => g.tbl_Perfiles, opt => opt.Ignore());
+                cfg.CreateMap<tbl_Usuarios,UsuariosDto>();
+
+                cfg.CreateMap<EmpresasDto,tbl_Empresas>().ForMember(g => g.tbl_Sedes, opt => opt.Ignore())
+                                                         .ForMember(g => g.tbl_ModulosXPerfil, opt => opt.Ignore())
+                                                         .ForMember(g => g.tbl_Usuarios, opt => opt.Ignore());
+                cfg.CreateMap<tbl_Empresas,EmpresasDto>();
+
+                cfg.CreateMap<PerfilesDto, tbl_Perfiles>().ForMember(g => g.tbl_ModulosXPerfil, opt => opt.Ignore())
+                                                          .ForMember(g => g.tbl_Usuarios, opt => opt.Ignore());
+                cfg.CreateMap<tbl_Perfiles, PerfilesDto>();
+
+                cfg.CreateMap<LoginDto, SesionesXUsuario>();
+                cfg.CreateMap<SesionesXUsuario, LoginDto>();
+
+                cfg.CreateMap<LoginDto, LoginReturnDto>().ForMember(g => g.Mensaje, opt => opt.Ignore());
+                cfg.CreateMap<LoginReturnDto, LoginDto>();
+
+            });
+        }
+
+    }
+}
