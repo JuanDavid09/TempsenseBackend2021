@@ -63,16 +63,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementacion\Bitacora\BitacoraImplementacion.Data.cs" />
     <Compile Include="Implementacion\Contactenos\ContactenosImplementacion.Data.cs" />
+    <Compile Include="Implementacion\Dispositivos\DispositivosImplementacion.Data.cs" />
     <Compile Include="Implementacion\Empresas\EmpresasImplementacion.Data.cs" />
     <Compile Include="Implementacion\Login\LoginImplementacion.Data.cs" />
+    <Compile Include="Implementacion\Maestros\MaestrosImplementacion.Data.cs" />
     <Compile Include="Implementacion\Perfiles\PerfilesImplmentacion.Data.cs" />
     <Compile Include="Implementacion\Sedes\SedesImplementacion.Data.cs" />
-    <Compile Include="Implementacion\Umbral\UmbrelImplementacion.Data.cs" />
+    <Compile Include="Implementacion\Umbral\UmbralImplementacion.Data.cs" />
     <Compile Include="Implementacion\Usuarios\UsuariosImplemetacion.Data.cs" />
+    <Compile Include="Interfaz\Bitacora\IBitacoraInterfaz.Data.cs" />
     <Compile Include="Interfaz\Contactenos\IContactenosInterfaz.Data.cs" />
+    <Compile Include="Interfaz\Dispositivos\IDispositivosInterfaz.Data.cs" />
     <Compile Include="Interfaz\Empresas\IEmpresasInterfaz.Data.cs" />
     <Compile Include="Interfaz\Login\ILoginInterfaz.Data.cs" />
+    <Compile Include="Interfaz\Maestros\IMaestrosInterfaz.Data.cs" />
     <Compile Include="Interfaz\Perfiles\IPerfilesInterfaz.Data.cs" />
     <Compile Include="Interfaz\Sedes\ISedeInterfaz.Data.cs" />
     <Compile Include="Interfaz\Umbral\IUmbralInterfaz.Data.cs" />

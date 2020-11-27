@@ -17,9 +17,9 @@ namespace Tempsense.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbl_Empresas()
         {
+            this.tbl_Usuarios = new HashSet<tbl_Usuarios>();
             this.tbl_Sedes = new HashSet<tbl_Sedes>();
             this.tbl_ModulosXPerfil = new HashSet<tbl_ModulosXPerfil>();
-            this.tbl_Usuarios = new HashSet<tbl_Usuarios>();
         }
     
         public int IdEmpresa { get; set; }
@@ -32,10 +32,10 @@ namespace Tempsense.Entities
         public bool NotificaPorMSM { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Usuarios> tbl_Usuarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Sedes> tbl_Sedes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_ModulosXPerfil> tbl_ModulosXPerfil { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_Usuarios> tbl_Usuarios { get; set; }
     }
 }

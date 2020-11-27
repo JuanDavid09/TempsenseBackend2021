@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="Microsoft.Owin, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
@@ -56,16 +57,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementacion\Bitacora\BitacoraImplementacion.Bussines.cs" />
     <Compile Include="Implementacion\Contactenos\ContactenosImplementacion.Bussines.cs" />
+    <Compile Include="Implementacion\Dispositivos\DispositivosImplementacion.Bussines.cs" />
     <Compile Include="Implementacion\Empresas\EmpresasImplementacion.Bussines.cs" />
     <Compile Include="Implementacion\Login\LoginImplementacion.Bussines.cs" />
+    <Compile Include="Implementacion\Maestros\MaestrosImplementacion.Bussines.cs" />
     <Compile Include="Implementacion\Perfiles\PerfilesImplementacion.Bussines.cs" />
     <Compile Include="Implementacion\Sedes\SedesImplementacion.Bussines.cs" />
     <Compile Include="Implementacion\Umbral\UmbralImplementacion.Bussines.cs" />
     <Compile Include="Implementacion\Usuarios\UsuariosImplementacion.Bussines.cs" />
+    <Compile Include="Interfaz\Bitacora\IBitacoraInterfaz.Bussines.cs" />
     <Compile Include="Interfaz\Contactenos\IContactenosInterfaz.Bussines.cs" />
+    <Compile Include="Interfaz\Dispositivos\IDispositivosInterfaz.Bussines.cs" />
     <Compile Include="Interfaz\Empresas\IEmpresasInterfaz.Bussines.cs" />
     <Compile Include="Interfaz\Login\ILoginInterfaz.Bussines.cs" />
+    <Compile Include="Interfaz\Maestros\IMaestrosInterfaz.Bussines.cs" />
     <Compile Include="Interfaz\Perfiles\IPerfilesInterfaz.Bussines.cs" />
     <Compile Include="Interfaz\Sedes\ISedesInterfaz.Bussines.cs" />
     <Compile Include="Interfaz\Umbral\IUmbralInterfaz.Bussines.cs" />

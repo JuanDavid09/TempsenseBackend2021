@@ -31,14 +31,20 @@ namespace Tempsense.Data.Implementacion.Login
             objLoginSession.FechaInicioSesion = System.DateTime.Now;
             objLoginSession.Token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
             objLoginSession.IdEmpresa = objUsuario.IdEmpresa;
-           
+            objLoginSession.IdSede = objUsuario.IdSede;
+            objLoginSession.IdPerfil = objUsuario.IdPerfil;
+            
             var objSession = Mapper.Map<SesionesXUsuario>(objLoginSession);
             var resutlSave = _interlControlEntitie.SesionesXUsuario.Add(objSession);
             _interlControlEntitie.SaveChanges();
 
-            var resutl = Mapper.Map<LoginDto>(resutlSave);
+            objLoginSession.IdSesionUsuario = resutlSave.IdSesionUsuario;
 
-            return Mapper.Map<LoginReturnDto>(resutl);
+            var resutl = Mapper.Map<LoginDto>(objLoginSession);
+
+            var returnData = Mapper.Map<LoginReturnDto>(resutl);
+
+            return returnData;
 
         }
 
@@ -58,13 +64,11 @@ namespace Tempsense.Data.Implementacion.Login
         }
  
 
-        public bool ValidarSessionUsuario(ObjetoSesion sessionUsuario)
+        public bool ValidarSessionUsuario(ValidatorSesionDto validator)
         {
-            var objUsuario = _interlControlEntitie.tbl_Usuarios.Where(c => c.Email.Equals(sessionUsuario.Email) &&
-                c.Passwords.Equals(sessionUsuario.password)).FirstOrDefault();
-
+           
             var objSesion = _interlControlEntitie.SesionesXUsuario.Where(c =>
-                 c.IdUsuario == objUsuario.IdUsuario).FirstOrDefault();
+                 c.IdUsuario == validator.IdUsuario && c.IdSesionUsuario == validator.IdSesionUsuario).FirstOrDefault();
 
             if (objSesion == null)
             {

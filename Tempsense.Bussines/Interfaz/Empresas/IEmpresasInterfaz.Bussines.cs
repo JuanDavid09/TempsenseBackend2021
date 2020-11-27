@@ -10,5 +10,13 @@ namespace Tempsense.Bussines.Interfaz.Empresas
     public interface IEmpresasInterfazBussines
     {
         List<EmpresasDto> ListarEmpresasAll();
+
+        EmpresasDto ListarEmpresaId(int idEmpresa);
+
+        bool EditarEmpresaId(EmpresasDto empresasDto);
+
+        bool EliminarEmpresa(int idEmpresa);
+
+        EmpresasDto CrearEmpresa(EmpresasDto empresasDto);
     }
 }

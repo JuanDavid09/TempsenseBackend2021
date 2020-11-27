@@ -15,5 +15,6 @@ namespace Tempsense.Entities.Dtos.Dtos.Usuarios
         public int IdEmpresa { get; set; }
         public int IdPerfil { get; set; }
         public string Email { get; set; }
+        public int IdSede { get; set; }
     }
 }

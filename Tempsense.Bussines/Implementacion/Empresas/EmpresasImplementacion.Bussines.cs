@@ -30,17 +30,56 @@ namespace Tempsense.Bussines.Implementacion.Empresas
             }
         }
 
-        //public EmpresasDto CrearEmpresa(EmpresasDto empresasDto)
-        //{
-        //    try
-        //    {
+        public EmpresasDto CrearEmpresa(EmpresasDto empresasDto)
+        {
+            try
+            {
 
-        //        return this._IEmpresasInterfazData.ListarEmpresasAll();
-        //    }
-        //    catch (Exception ax)
-        //    {
-        //        throw new ArgumentException(ax.Message, ax);
-        //    }
-        //}
+                return this._IEmpresasInterfazData.CrearEmpresa(empresasDto);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
+        public bool EditarEmpresaId(EmpresasDto empresasDto)
+        {
+            try
+            {
+
+                return this._IEmpresasInterfazData.EditarEmpresaId(empresasDto);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
+        public EmpresasDto ListarEmpresaId(int idEmpresa)
+        {
+            try
+            {
+
+                return this._IEmpresasInterfazData.ListarEmpresaId(idEmpresa);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
+        public bool EliminarEmpresa(int idEmpresa)
+        {
+            try
+            {
+
+                return this._IEmpresasInterfazData.EliminarEmpresa(idEmpresa);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
     }
 }

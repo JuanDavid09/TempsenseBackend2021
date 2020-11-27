@@ -28,7 +28,14 @@ namespace Tempsense.web.Controllers.Usuarios
         {
             try
             {
-                return Request.CreateResponse(HttpStatusCode.OK, this._IUsuarioInterfazBussines.GuardarUsuario(userDto));
+                UsuariosDto objUser = this._IUsuarioInterfazBussines.ValidarEmailUser(userDto.Email);
+                if (objUser == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, this._IUsuarioInterfazBussines.GuardarUsuario(userDto)); 
+                } else
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
             }
             catch (Exception ex)
             {

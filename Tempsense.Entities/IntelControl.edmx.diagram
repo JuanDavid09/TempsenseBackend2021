@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c72ac50e80b404ea75c34e0da70c95a" Name="Diagram1">
+        <EntityTypeShape EntityType="IntelControlModel.SesionesXUsuario" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntelControlModel.tbl_Bitacoras" Width="1.5" PointX="7.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntelControlModel.tbl_Dispositivos" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntelControlModel.tbl_Empresas" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntelControlModel.tbl_Modulos" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntelControlModel.tbl_ModulosXPerfil" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntelControlModel.tbl_Perfiles" Width="1.5" PointX="3.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntelControlModel.tbl_Sedes" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntelControlModel.tbl_TipoMedidas" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntelControlModel.tbl_UltimasMedidas" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntelControlModel.tbl_Umbrales" Width="1.5" PointX="7.5" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntelControlModel.tbl_Usuarios" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="IntelControlModel.FK__Bitacoras__Dispo__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="IntelControlModel.FK__Bitacoras__Dispo__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="IntelControlModel.fk_DispositivoID" ManuallyRouted="false" />
+        <AssociationConnector Association="IntelControlModel.FK_UltimasMedidas_Dispositivo" ManuallyRouted="false" />
+        <AssociationConnector Association="IntelControlModel.FkDispositivo_TipoMedida_IdTipoMedida" ManuallyRouted="false" />
+        <AssociationConnector Association="IntelControlModel.FkDispositivos_Sede_IdSede" ManuallyRouted="false" />
+        <AssociationConnector Association="IntelControlModel.FkEmpresa_IdEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="IntelControlModel.FkEmpresa_Sede_IdEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="IntelControlModel.Fktbl_ModulosXPerfil_IdEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="IntelControlModel.Fktbl_ModulosXPerfil_IdModulo" ManuallyRouted="false" />
+        <AssociationConnector Association="IntelControlModel.Fktbl_ModulosXPerfil_IdPerfil" ManuallyRouted="false" />
+        <AssociationConnector Association="IntelControlModel.FkPerfiles_IdPerfil" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

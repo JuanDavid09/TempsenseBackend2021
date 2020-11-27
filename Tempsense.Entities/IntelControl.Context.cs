@@ -25,14 +25,17 @@ namespace Tempsense.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tbl_Perfiles> tbl_Perfiles { get; set; }
+        public virtual DbSet<SesionesXUsuario> SesionesXUsuario { get; set; }
+        public virtual DbSet<tbl_Bitacoras> tbl_Bitacoras { get; set; }
         public virtual DbSet<tbl_Dispositivos> tbl_Dispositivos { get; set; }
-        public virtual DbSet<tbl_Sedes> tbl_Sedes { get; set; }
-        public virtual DbSet<tbl_TipoMedidas> tbl_TipoMedidas { get; set; }
+        public virtual DbSet<tbl_Empresas> tbl_Empresas { get; set; }
         public virtual DbSet<tbl_Modulos> tbl_Modulos { get; set; }
         public virtual DbSet<tbl_ModulosXPerfil> tbl_ModulosXPerfil { get; set; }
-        public virtual DbSet<tbl_Empresas> tbl_Empresas { get; set; }
+        public virtual DbSet<tbl_Perfiles> tbl_Perfiles { get; set; }
+        public virtual DbSet<tbl_Sedes> tbl_Sedes { get; set; }
+        public virtual DbSet<tbl_TipoMedidas> tbl_TipoMedidas { get; set; }
+        public virtual DbSet<tbl_UltimasMedidas> tbl_UltimasMedidas { get; set; }
+        public virtual DbSet<tbl_Umbrales> tbl_Umbrales { get; set; }
         public virtual DbSet<tbl_Usuarios> tbl_Usuarios { get; set; }
-        public virtual DbSet<SesionesXUsuario> SesionesXUsuario { get; set; }
     }
 }

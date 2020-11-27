@@ -11,6 +11,8 @@ namespace Tempsense.Bussines.Interfaz.Login
     {
         LoginReturnDto CrearSessionUsuario(ObjetoSesion sessionUsuario);
         bool CerrarSesionUsuario(LoginDto objLogin);
-   
+        bool ValidarSessionUsuario(ValidatorSesionDto validator);
+
+
     }
 }

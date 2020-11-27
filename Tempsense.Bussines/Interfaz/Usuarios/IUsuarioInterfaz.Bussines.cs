@@ -10,5 +10,7 @@ namespace Tempsense.Bussines.Interfaz.Usuarios
     public interface IUsuarioInterfazBussines
     {
         UsuariosDto GuardarUsuario(UsuariosDto userDto);
+
+        UsuariosDto ValidarEmailUser(string email);
     }
 }

@@ -41,9 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\Bitacoras\Bitacoras.Dto.cs" />
+    <Compile Include="Dtos\Dispositivos\Dispositivos.Dto.cs" />
     <Compile Include="Dtos\Empresas\EmpresasDto.cs" />
     <Compile Include="Dtos\Login\LoginDto.cs" />
+    <Compile Include="Dtos\Maestros\TipoMedidasDto.cs" />
     <Compile Include="Dtos\Perfiles\PerfilesDto.cs" />
+    <Compile Include="Dtos\Sedes\Sedes.Dto.cs" />
     <Compile Include="Dtos\Usuarios\UsuariosDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,6 +56,9 @@
       <Project>{771ee123-20e6-442a-ba2c-1b8123c5f0f2}</Project>
       <Name>Tempsense.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dtos\Umbrales\Umbrales.Dto.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

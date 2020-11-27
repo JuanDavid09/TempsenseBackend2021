@@ -19,8 +19,8 @@ namespace Tempsense.Entities
         public int IdEmpresa { get; set; }
         public int IdModulo { get; set; }
     
+        public virtual tbl_Empresas tbl_Empresas { get; set; }
         public virtual tbl_Modulos tbl_Modulos { get; set; }
         public virtual tbl_Perfiles tbl_Perfiles { get; set; }
-        public virtual tbl_Empresas tbl_Empresas { get; set; }
     }
 }

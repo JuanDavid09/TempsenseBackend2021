@@ -21,5 +21,18 @@ namespace Tempsense.Data.Implementacion.Usuarios
             return Mapper.Map<UsuariosDto>(resutlSave);
         }
 
+        public UsuariosDto ValidarEmailUser(string email)
+        {
+            try
+            {
+                tbl_Usuarios objUserTable =  this._interlControlEntitie.tbl_Usuarios.Where(c => c.Email.Equals(email)).FirstOrDefault();
+                return Mapper.Map<UsuariosDto>(objUserTable);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
     }
 }

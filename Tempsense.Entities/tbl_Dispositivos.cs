@@ -14,12 +14,30 @@ namespace Tempsense.Entities
     
     public partial class tbl_Dispositivos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbl_Dispositivos()
+        {
+            this.tbl_Bitacoras = new HashSet<tbl_Bitacoras>();
+            this.tbl_Bitacoras1 = new HashSet<tbl_Bitacoras>();
+            this.tbl_Umbrales = new HashSet<tbl_Umbrales>();
+            this.tbl_UltimasMedidas = new HashSet<tbl_UltimasMedidas>();
+        }
+    
         public int IdDispositivo { get; set; }
         public string Nombre { get; set; }
         public int IdTipoMedida { get; set; }
         public int IdSede { get; set; }
         public int TiempoNotificacion { get; set; }
+        public bool Activo { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Bitacoras> tbl_Bitacoras { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Bitacoras> tbl_Bitacoras1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_Umbrales> tbl_Umbrales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_UltimasMedidas> tbl_UltimasMedidas { get; set; }
         public virtual tbl_TipoMedidas tbl_TipoMedidas { get; set; }
         public virtual tbl_Sedes tbl_Sedes { get; set; }
     }

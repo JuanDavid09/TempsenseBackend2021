@@ -29,5 +29,17 @@ namespace Tempsense.Bussines.Implementacion.Usuarios
             }
         }
 
+        public UsuariosDto ValidarEmailUser(string email)
+        {
+            try
+            {
+                return this._IUsuariosInterfazData.ValidarEmailUser(email);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
     }
 }

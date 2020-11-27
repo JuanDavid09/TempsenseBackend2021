@@ -1,0 +1,868 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IntelControlModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SesionesXUsuario">
+          <Key>
+            <PropertyRef Name="IdSesionUsuario" />
+          </Key>
+          <Property Name="IdSesionUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="Token" Type="nvarchar(max)" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="FechaInicioSesion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Bitacoras">
+          <Key>
+            <PropertyRef Name="IdBitacora" />
+          </Key>
+          <Property Name="IdBitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="HoraInicio" Type="datetime" />
+          <Property Name="HoraFin" Type="datetime" />
+          <Property Name="Problema" Type="varchar" MaxLength="2000" />
+          <Property Name="Solucion" Type="varchar" MaxLength="2000" />
+          <Property Name="IdDispositivo" Type="int" Nullable="false" />
+          <Property Name="Responsable" Type="varchar" MaxLength="100" />
+          <Property Name="guardadodebitacora" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Dispositivos">
+          <Key>
+            <PropertyRef Name="IdDispositivo" />
+          </Key>
+          <Property Name="IdDispositivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdTipoMedida" Type="int" Nullable="false" />
+          <Property Name="IdSede" Type="int" Nullable="false" />
+          <Property Name="TiempoNotificacion" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Empresas">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Abr_Empresa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nit" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="NotificaPorCorreo" Type="bit" Nullable="false" />
+          <Property Name="NotificaPorMSM" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Modulos">
+          <Key>
+            <PropertyRef Name="IdModulo" />
+          </Key>
+          <Property Name="IdModulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ModulosXPerfil">
+          <Key>
+            <PropertyRef Name="IdModuloXPerfil" />
+          </Key>
+          <Property Name="IdModuloXPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPerfil" Type="int" Nullable="false" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdModulo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Perfiles">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Sedes">
+          <Key>
+            <PropertyRef Name="IdSede" />
+          </Key>
+          <Property Name="IdSede" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_TipoMedidas">
+          <Key>
+            <PropertyRef Name="IdTipoMedida" />
+          </Key>
+          <Property Name="IdTipoMedida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_UltimasMedidas">
+          <Key>
+            <PropertyRef Name="MedidaID" />
+          </Key>
+          <Property Name="MedidaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Valor" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="FechaHora" Type="datetime" />
+          <Property Name="DispositivoID" Type="int" />
+          <Property Name="UltimaAlerta" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Umbrales">
+          <Key>
+            <PropertyRef Name="IdUmbral" />
+          </Key>
+          <Property Name="IdUmbral" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Temperatura_min" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Temperatura_max" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="IdDispositivo" Type="int" Nullable="false" />
+          <Property Name="Tolerancia_min" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="Tolerancia_max" Type="decimal" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbl_Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Passwords" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdPerfil" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdSede" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Bitacoras__Dispo__31EC6D26">
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="1" />
+          <End Role="tbl_Bitacoras" Type="Self.tbl_Bitacoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Dispositivos">
+              <PropertyRef Name="IdDispositivo" />
+            </Principal>
+            <Dependent Role="tbl_Bitacoras">
+              <PropertyRef Name="IdDispositivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bitacoras__Dispo__6FE99F9F">
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_Bitacoras" Type="Self.tbl_Bitacoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Dispositivos">
+              <PropertyRef Name="IdDispositivo" />
+            </Principal>
+            <Dependent Role="tbl_Bitacoras">
+              <PropertyRef Name="IdDispositivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DispositivoID">
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_Umbrales" Type="Self.tbl_Umbrales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Dispositivos">
+              <PropertyRef Name="IdDispositivo" />
+            </Principal>
+            <Dependent Role="tbl_Umbrales">
+              <PropertyRef Name="IdDispositivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UltimasMedidas_Dispositivo">
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_UltimasMedidas" Type="Self.tbl_UltimasMedidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Dispositivos">
+              <PropertyRef Name="IdDispositivo" />
+            </Principal>
+            <Dependent Role="tbl_UltimasMedidas">
+              <PropertyRef Name="DispositivoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkDispositivo_TipoMedida_IdTipoMedida">
+          <End Role="tbl_TipoMedidas" Type="Self.tbl_TipoMedidas" Multiplicity="1" />
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_TipoMedidas">
+              <PropertyRef Name="IdTipoMedida" />
+            </Principal>
+            <Dependent Role="tbl_Dispositivos">
+              <PropertyRef Name="IdTipoMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkDispositivos_Sede_IdSede">
+          <End Role="tbl_Sedes" Type="Self.tbl_Sedes" Multiplicity="1" />
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Sedes">
+              <PropertyRef Name="IdSede" />
+            </Principal>
+            <Dependent Role="tbl_Dispositivos">
+              <PropertyRef Name="IdSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkEmpresa_IdEmpresa">
+          <End Role="tbl_Empresas" Type="Self.tbl_Empresas" Multiplicity="1" />
+          <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="tbl_Usuarios">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkEmpresa_Sede_IdEmpresa">
+          <End Role="tbl_Empresas" Type="Self.tbl_Empresas" Multiplicity="1" />
+          <End Role="tbl_Sedes" Type="Self.tbl_Sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="tbl_Sedes">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkPerfiles_IdPerfil">
+          <End Role="tbl_Perfiles" Type="Self.tbl_Perfiles" Multiplicity="1" />
+          <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Perfiles">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="tbl_Usuarios">
+              <PropertyRef Name="IdPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fktbl_ModulosXPerfil_IdEmpresa">
+          <End Role="tbl_Empresas" Type="Self.tbl_Empresas" Multiplicity="1" />
+          <End Role="tbl_ModulosXPerfil" Type="Self.tbl_ModulosXPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="tbl_ModulosXPerfil">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fktbl_ModulosXPerfil_IdModulo">
+          <End Role="tbl_Modulos" Type="Self.tbl_Modulos" Multiplicity="1" />
+          <End Role="tbl_ModulosXPerfil" Type="Self.tbl_ModulosXPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Modulos">
+              <PropertyRef Name="IdModulo" />
+            </Principal>
+            <Dependent Role="tbl_ModulosXPerfil">
+              <PropertyRef Name="IdModulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fktbl_ModulosXPerfil_IdPerfil">
+          <End Role="tbl_Perfiles" Type="Self.tbl_Perfiles" Multiplicity="1" />
+          <End Role="tbl_ModulosXPerfil" Type="Self.tbl_ModulosXPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Perfiles">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="tbl_ModulosXPerfil">
+              <PropertyRef Name="IdPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IntelControlModelStoreContainer">
+          <EntitySet Name="SesionesXUsuario" EntityType="Self.SesionesXUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Bitacoras" EntityType="Self.tbl_Bitacoras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Dispositivos" EntityType="Self.tbl_Dispositivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Empresas" EntityType="Self.tbl_Empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Modulos" EntityType="Self.tbl_Modulos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ModulosXPerfil" EntityType="Self.tbl_ModulosXPerfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Perfiles" EntityType="Self.tbl_Perfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Sedes" EntityType="Self.tbl_Sedes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_TipoMedidas" EntityType="Self.tbl_TipoMedidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_UltimasMedidas" EntityType="Self.tbl_UltimasMedidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Umbrales" EntityType="Self.tbl_Umbrales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Usuarios" EntityType="Self.tbl_Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Bitacoras__Dispo__31EC6D26" Association="Self.FK__Bitacoras__Dispo__31EC6D26">
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+            <End Role="tbl_Bitacoras" EntitySet="tbl_Bitacoras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bitacoras__Dispo__6FE99F9F" Association="Self.FK__Bitacoras__Dispo__6FE99F9F">
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+            <End Role="tbl_Bitacoras" EntitySet="tbl_Bitacoras" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DispositivoID" Association="Self.fk_DispositivoID">
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+            <End Role="tbl_Umbrales" EntitySet="tbl_Umbrales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UltimasMedidas_Dispositivo" Association="Self.FK_UltimasMedidas_Dispositivo">
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+            <End Role="tbl_UltimasMedidas" EntitySet="tbl_UltimasMedidas" />
+          </AssociationSet>
+          <AssociationSet Name="FkDispositivo_TipoMedida_IdTipoMedida" Association="Self.FkDispositivo_TipoMedida_IdTipoMedida">
+            <End Role="tbl_TipoMedidas" EntitySet="tbl_TipoMedidas" />
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+          </AssociationSet>
+          <AssociationSet Name="FkDispositivos_Sede_IdSede" Association="Self.FkDispositivos_Sede_IdSede">
+            <End Role="tbl_Sedes" EntitySet="tbl_Sedes" />
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+          </AssociationSet>
+          <AssociationSet Name="FkEmpresa_IdEmpresa" Association="Self.FkEmpresa_IdEmpresa">
+            <End Role="tbl_Empresas" EntitySet="tbl_Empresas" />
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FkEmpresa_Sede_IdEmpresa" Association="Self.FkEmpresa_Sede_IdEmpresa">
+            <End Role="tbl_Empresas" EntitySet="tbl_Empresas" />
+            <End Role="tbl_Sedes" EntitySet="tbl_Sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FkPerfiles_IdPerfil" Association="Self.FkPerfiles_IdPerfil">
+            <End Role="tbl_Perfiles" EntitySet="tbl_Perfiles" />
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="Fktbl_ModulosXPerfil_IdEmpresa" Association="Self.Fktbl_ModulosXPerfil_IdEmpresa">
+            <End Role="tbl_Empresas" EntitySet="tbl_Empresas" />
+            <End Role="tbl_ModulosXPerfil" EntitySet="tbl_ModulosXPerfil" />
+          </AssociationSet>
+          <AssociationSet Name="Fktbl_ModulosXPerfil_IdModulo" Association="Self.Fktbl_ModulosXPerfil_IdModulo">
+            <End Role="tbl_Modulos" EntitySet="tbl_Modulos" />
+            <End Role="tbl_ModulosXPerfil" EntitySet="tbl_ModulosXPerfil" />
+          </AssociationSet>
+          <AssociationSet Name="Fktbl_ModulosXPerfil_IdPerfil" Association="Self.Fktbl_ModulosXPerfil_IdPerfil">
+            <End Role="tbl_Perfiles" EntitySet="tbl_Perfiles" />
+            <End Role="tbl_ModulosXPerfil" EntitySet="tbl_ModulosXPerfil" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IntelControlModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SesionesXUsuario">
+          <Key>
+            <PropertyRef Name="IdSesionUsuario" />
+          </Key>
+          <Property Name="IdSesionUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="FechaInicioSesion" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Bitacoras">
+          <Key>
+            <PropertyRef Name="IdBitacora" />
+          </Key>
+          <Property Name="IdBitacora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="HoraInicio" Type="DateTime" Precision="3" />
+          <Property Name="HoraFin" Type="DateTime" Precision="3" />
+          <Property Name="Problema" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Solucion" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="IdDispositivo" Type="Int32" Nullable="false" />
+          <Property Name="Responsable" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="guardadodebitacora" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Dispositivos" Relationship="Self.FK__Bitacoras__Dispo__31EC6D26" FromRole="tbl_Bitacoras" ToRole="tbl_Dispositivos" />
+          <NavigationProperty Name="tbl_Dispositivos1" Relationship="Self.FK__Bitacoras__Dispo__6FE99F9F" FromRole="tbl_Bitacoras" ToRole="tbl_Dispositivos" />
+        </EntityType>
+        <EntityType Name="tbl_Dispositivos">
+          <Key>
+            <PropertyRef Name="IdDispositivo" />
+          </Key>
+          <Property Name="IdDispositivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdTipoMedida" Type="Int32" Nullable="false" />
+          <Property Name="IdSede" Type="Int32" Nullable="false" />
+          <Property Name="TiempoNotificacion" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tbl_Bitacoras" Relationship="Self.FK__Bitacoras__Dispo__31EC6D26" FromRole="tbl_Dispositivos" ToRole="tbl_Bitacoras" />
+          <NavigationProperty Name="tbl_Bitacoras1" Relationship="Self.FK__Bitacoras__Dispo__6FE99F9F" FromRole="tbl_Dispositivos" ToRole="tbl_Bitacoras" />
+          <NavigationProperty Name="tbl_Umbrales" Relationship="Self.fk_DispositivoID" FromRole="tbl_Dispositivos" ToRole="tbl_Umbrales" />
+          <NavigationProperty Name="tbl_UltimasMedidas" Relationship="Self.FK_UltimasMedidas_Dispositivo" FromRole="tbl_Dispositivos" ToRole="tbl_UltimasMedidas" />
+          <NavigationProperty Name="tbl_TipoMedidas" Relationship="Self.FkDispositivo_TipoMedida_IdTipoMedida" FromRole="tbl_Dispositivos" ToRole="tbl_TipoMedidas" />
+          <NavigationProperty Name="tbl_Sedes" Relationship="Self.FkDispositivos_Sede_IdSede" FromRole="tbl_Dispositivos" ToRole="tbl_Sedes" />
+        </EntityType>
+        <EntityType Name="tbl_Empresas">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Abr_Empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="NotificaPorCorreo" Type="Boolean" Nullable="false" />
+          <Property Name="NotificaPorMSM" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tbl_Usuarios" Relationship="Self.FkEmpresa_IdEmpresa" FromRole="tbl_Empresas" ToRole="tbl_Usuarios" />
+          <NavigationProperty Name="tbl_Sedes" Relationship="Self.FkEmpresa_Sede_IdEmpresa" FromRole="tbl_Empresas" ToRole="tbl_Sedes" />
+          <NavigationProperty Name="tbl_ModulosXPerfil" Relationship="Self.Fktbl_ModulosXPerfil_IdEmpresa" FromRole="tbl_Empresas" ToRole="tbl_ModulosXPerfil" />
+        </EntityType>
+        <EntityType Name="tbl_Modulos">
+          <Key>
+            <PropertyRef Name="IdModulo" />
+          </Key>
+          <Property Name="IdModulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_ModulosXPerfil" Relationship="Self.Fktbl_ModulosXPerfil_IdModulo" FromRole="tbl_Modulos" ToRole="tbl_ModulosXPerfil" />
+        </EntityType>
+        <EntityType Name="tbl_ModulosXPerfil">
+          <Key>
+            <PropertyRef Name="IdModuloXPerfil" />
+          </Key>
+          <Property Name="IdModuloXPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPerfil" Type="Int32" Nullable="false" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="IdModulo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_Empresas" Relationship="Self.Fktbl_ModulosXPerfil_IdEmpresa" FromRole="tbl_ModulosXPerfil" ToRole="tbl_Empresas" />
+          <NavigationProperty Name="tbl_Modulos" Relationship="Self.Fktbl_ModulosXPerfil_IdModulo" FromRole="tbl_ModulosXPerfil" ToRole="tbl_Modulos" />
+          <NavigationProperty Name="tbl_Perfiles" Relationship="Self.Fktbl_ModulosXPerfil_IdPerfil" FromRole="tbl_ModulosXPerfil" ToRole="tbl_Perfiles" />
+        </EntityType>
+        <EntityType Name="tbl_Perfiles">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_ModulosXPerfil" Relationship="Self.Fktbl_ModulosXPerfil_IdPerfil" FromRole="tbl_Perfiles" ToRole="tbl_ModulosXPerfil" />
+          <NavigationProperty Name="tbl_Usuarios" Relationship="Self.FkPerfiles_IdPerfil" FromRole="tbl_Perfiles" ToRole="tbl_Usuarios" />
+        </EntityType>
+        <EntityType Name="tbl_Sedes">
+          <Key>
+            <PropertyRef Name="IdSede" />
+          </Key>
+          <Property Name="IdSede" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_Dispositivos" Relationship="Self.FkDispositivos_Sede_IdSede" FromRole="tbl_Sedes" ToRole="tbl_Dispositivos" />
+          <NavigationProperty Name="tbl_Empresas" Relationship="Self.FkEmpresa_Sede_IdEmpresa" FromRole="tbl_Sedes" ToRole="tbl_Empresas" />
+        </EntityType>
+        <EntityType Name="tbl_TipoMedidas">
+          <Key>
+            <PropertyRef Name="IdTipoMedida" />
+          </Key>
+          <Property Name="IdTipoMedida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_Dispositivos" Relationship="Self.FkDispositivo_TipoMedida_IdTipoMedida" FromRole="tbl_TipoMedidas" ToRole="tbl_Dispositivos" />
+        </EntityType>
+        <EntityType Name="tbl_UltimasMedidas">
+          <Key>
+            <PropertyRef Name="MedidaID" />
+          </Key>
+          <Property Name="MedidaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Valor" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="FechaHora" Type="DateTime" Precision="3" />
+          <Property Name="DispositivoID" Type="Int32" />
+          <Property Name="UltimaAlerta" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_Dispositivos" Relationship="Self.FK_UltimasMedidas_Dispositivo" FromRole="tbl_UltimasMedidas" ToRole="tbl_Dispositivos" />
+        </EntityType>
+        <EntityType Name="tbl_Umbrales">
+          <Key>
+            <PropertyRef Name="IdUmbral" />
+          </Key>
+          <Property Name="IdUmbral" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Temperatura_min" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Temperatura_max" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdDispositivo" Type="Int32" Nullable="false" />
+          <Property Name="Tolerancia_min" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="Tolerancia_max" Type="Decimal" Precision="4" Scale="2" />
+          <NavigationProperty Name="tbl_Dispositivos" Relationship="Self.fk_DispositivoID" FromRole="tbl_Umbrales" ToRole="tbl_Dispositivos" />
+        </EntityType>
+        <EntityType Name="tbl_Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Passwords" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="IdPerfil" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdSede" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_Empresas" Relationship="Self.FkEmpresa_IdEmpresa" FromRole="tbl_Usuarios" ToRole="tbl_Empresas" />
+          <NavigationProperty Name="tbl_Perfiles" Relationship="Self.FkPerfiles_IdPerfil" FromRole="tbl_Usuarios" ToRole="tbl_Perfiles" />
+        </EntityType>
+        <Association Name="FK__Bitacoras__Dispo__31EC6D26">
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="1" />
+          <End Role="tbl_Bitacoras" Type="Self.tbl_Bitacoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Dispositivos">
+              <PropertyRef Name="IdDispositivo" />
+            </Principal>
+            <Dependent Role="tbl_Bitacoras">
+              <PropertyRef Name="IdDispositivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Bitacoras__Dispo__6FE99F9F">
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_Bitacoras" Type="Self.tbl_Bitacoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Dispositivos">
+              <PropertyRef Name="IdDispositivo" />
+            </Principal>
+            <Dependent Role="tbl_Bitacoras">
+              <PropertyRef Name="IdDispositivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DispositivoID">
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_Umbrales" Type="Self.tbl_Umbrales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Dispositivos">
+              <PropertyRef Name="IdDispositivo" />
+            </Principal>
+            <Dependent Role="tbl_Umbrales">
+              <PropertyRef Name="IdDispositivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UltimasMedidas_Dispositivo">
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_UltimasMedidas" Type="Self.tbl_UltimasMedidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Dispositivos">
+              <PropertyRef Name="IdDispositivo" />
+            </Principal>
+            <Dependent Role="tbl_UltimasMedidas">
+              <PropertyRef Name="DispositivoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkDispositivo_TipoMedida_IdTipoMedida">
+          <End Role="tbl_TipoMedidas" Type="Self.tbl_TipoMedidas" Multiplicity="1" />
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_TipoMedidas">
+              <PropertyRef Name="IdTipoMedida" />
+            </Principal>
+            <Dependent Role="tbl_Dispositivos">
+              <PropertyRef Name="IdTipoMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkDispositivos_Sede_IdSede">
+          <End Role="tbl_Sedes" Type="Self.tbl_Sedes" Multiplicity="1" />
+          <End Role="tbl_Dispositivos" Type="Self.tbl_Dispositivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Sedes">
+              <PropertyRef Name="IdSede" />
+            </Principal>
+            <Dependent Role="tbl_Dispositivos">
+              <PropertyRef Name="IdSede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkEmpresa_IdEmpresa">
+          <End Role="tbl_Empresas" Type="Self.tbl_Empresas" Multiplicity="1" />
+          <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="tbl_Usuarios">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkEmpresa_Sede_IdEmpresa">
+          <End Role="tbl_Empresas" Type="Self.tbl_Empresas" Multiplicity="1" />
+          <End Role="tbl_Sedes" Type="Self.tbl_Sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="tbl_Sedes">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fktbl_ModulosXPerfil_IdEmpresa">
+          <End Role="tbl_Empresas" Type="Self.tbl_Empresas" Multiplicity="1" />
+          <End Role="tbl_ModulosXPerfil" Type="Self.tbl_ModulosXPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Empresas">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="tbl_ModulosXPerfil">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fktbl_ModulosXPerfil_IdModulo">
+          <End Role="tbl_Modulos" Type="Self.tbl_Modulos" Multiplicity="1" />
+          <End Role="tbl_ModulosXPerfil" Type="Self.tbl_ModulosXPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Modulos">
+              <PropertyRef Name="IdModulo" />
+            </Principal>
+            <Dependent Role="tbl_ModulosXPerfil">
+              <PropertyRef Name="IdModulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fktbl_ModulosXPerfil_IdPerfil">
+          <End Role="tbl_Perfiles" Type="Self.tbl_Perfiles" Multiplicity="1" />
+          <End Role="tbl_ModulosXPerfil" Type="Self.tbl_ModulosXPerfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Perfiles">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="tbl_ModulosXPerfil">
+              <PropertyRef Name="IdPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkPerfiles_IdPerfil">
+          <End Role="tbl_Perfiles" Type="Self.tbl_Perfiles" Multiplicity="1" />
+          <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Perfiles">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="tbl_Usuarios">
+              <PropertyRef Name="IdPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IntelControlEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SesionesXUsuario" EntityType="Self.SesionesXUsuario" />
+          <EntitySet Name="tbl_Bitacoras" EntityType="Self.tbl_Bitacoras" />
+          <EntitySet Name="tbl_Dispositivos" EntityType="Self.tbl_Dispositivos" />
+          <EntitySet Name="tbl_Empresas" EntityType="Self.tbl_Empresas" />
+          <EntitySet Name="tbl_Modulos" EntityType="Self.tbl_Modulos" />
+          <EntitySet Name="tbl_ModulosXPerfil" EntityType="Self.tbl_ModulosXPerfil" />
+          <EntitySet Name="tbl_Perfiles" EntityType="Self.tbl_Perfiles" />
+          <EntitySet Name="tbl_Sedes" EntityType="Self.tbl_Sedes" />
+          <EntitySet Name="tbl_TipoMedidas" EntityType="Self.tbl_TipoMedidas" />
+          <EntitySet Name="tbl_UltimasMedidas" EntityType="Self.tbl_UltimasMedidas" />
+          <EntitySet Name="tbl_Umbrales" EntityType="Self.tbl_Umbrales" />
+          <EntitySet Name="tbl_Usuarios" EntityType="Self.tbl_Usuarios" />
+          <AssociationSet Name="FK__Bitacoras__Dispo__31EC6D26" Association="Self.FK__Bitacoras__Dispo__31EC6D26">
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+            <End Role="tbl_Bitacoras" EntitySet="tbl_Bitacoras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Bitacoras__Dispo__6FE99F9F" Association="Self.FK__Bitacoras__Dispo__6FE99F9F">
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+            <End Role="tbl_Bitacoras" EntitySet="tbl_Bitacoras" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DispositivoID" Association="Self.fk_DispositivoID">
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+            <End Role="tbl_Umbrales" EntitySet="tbl_Umbrales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UltimasMedidas_Dispositivo" Association="Self.FK_UltimasMedidas_Dispositivo">
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+            <End Role="tbl_UltimasMedidas" EntitySet="tbl_UltimasMedidas" />
+          </AssociationSet>
+          <AssociationSet Name="FkDispositivo_TipoMedida_IdTipoMedida" Association="Self.FkDispositivo_TipoMedida_IdTipoMedida">
+            <End Role="tbl_TipoMedidas" EntitySet="tbl_TipoMedidas" />
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+          </AssociationSet>
+          <AssociationSet Name="FkDispositivos_Sede_IdSede" Association="Self.FkDispositivos_Sede_IdSede">
+            <End Role="tbl_Sedes" EntitySet="tbl_Sedes" />
+            <End Role="tbl_Dispositivos" EntitySet="tbl_Dispositivos" />
+          </AssociationSet>
+          <AssociationSet Name="FkEmpresa_IdEmpresa" Association="Self.FkEmpresa_IdEmpresa">
+            <End Role="tbl_Empresas" EntitySet="tbl_Empresas" />
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FkEmpresa_Sede_IdEmpresa" Association="Self.FkEmpresa_Sede_IdEmpresa">
+            <End Role="tbl_Empresas" EntitySet="tbl_Empresas" />
+            <End Role="tbl_Sedes" EntitySet="tbl_Sedes" />
+          </AssociationSet>
+          <AssociationSet Name="Fktbl_ModulosXPerfil_IdEmpresa" Association="Self.Fktbl_ModulosXPerfil_IdEmpresa">
+            <End Role="tbl_Empresas" EntitySet="tbl_Empresas" />
+            <End Role="tbl_ModulosXPerfil" EntitySet="tbl_ModulosXPerfil" />
+          </AssociationSet>
+          <AssociationSet Name="Fktbl_ModulosXPerfil_IdModulo" Association="Self.Fktbl_ModulosXPerfil_IdModulo">
+            <End Role="tbl_Modulos" EntitySet="tbl_Modulos" />
+            <End Role="tbl_ModulosXPerfil" EntitySet="tbl_ModulosXPerfil" />
+          </AssociationSet>
+          <AssociationSet Name="Fktbl_ModulosXPerfil_IdPerfil" Association="Self.Fktbl_ModulosXPerfil_IdPerfil">
+            <End Role="tbl_Perfiles" EntitySet="tbl_Perfiles" />
+            <End Role="tbl_ModulosXPerfil" EntitySet="tbl_ModulosXPerfil" />
+          </AssociationSet>
+          <AssociationSet Name="FkPerfiles_IdPerfil" Association="Self.FkPerfiles_IdPerfil">
+            <End Role="tbl_Perfiles" EntitySet="tbl_Perfiles" />
+            <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IntelControlModelStoreContainer" CdmEntityContainer="IntelControlEntities">
+          <EntitySetMapping Name="SesionesXUsuario">
+            <EntityTypeMapping TypeName="IntelControlModel.SesionesXUsuario">
+              <MappingFragment StoreEntitySet="SesionesXUsuario">
+                <ScalarProperty Name="IdSesionUsuario" ColumnName="IdSesionUsuario" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="FechaInicioSesion" ColumnName="FechaInicioSesion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Bitacoras">
+            <EntityTypeMapping TypeName="IntelControlModel.tbl_Bitacoras">
+              <MappingFragment StoreEntitySet="tbl_Bitacoras">
+                <ScalarProperty Name="IdBitacora" ColumnName="IdBitacora" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
+                <ScalarProperty Name="Problema" ColumnName="Problema" />
+                <ScalarProperty Name="Solucion" ColumnName="Solucion" />
+                <ScalarProperty Name="IdDispositivo" ColumnName="IdDispositivo" />
+                <ScalarProperty Name="Responsable" ColumnName="Responsable" />
+                <ScalarProperty Name="guardadodebitacora" ColumnName="guardadodebitacora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Dispositivos">
+            <EntityTypeMapping TypeName="IntelControlModel.tbl_Dispositivos">
+              <MappingFragment StoreEntitySet="tbl_Dispositivos">
+                <ScalarProperty Name="IdDispositivo" ColumnName="IdDispositivo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdTipoMedida" ColumnName="IdTipoMedida" />
+                <ScalarProperty Name="IdSede" ColumnName="IdSede" />
+                <ScalarProperty Name="TiempoNotificacion" ColumnName="TiempoNotificacion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Empresas">
+            <EntityTypeMapping TypeName="IntelControlModel.tbl_Empresas">
+              <MappingFragment StoreEntitySet="tbl_Empresas">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Abr_Empresa" ColumnName="Abr_Empresa" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="NotificaPorCorreo" ColumnName="NotificaPorCorreo" />
+                <ScalarProperty Name="NotificaPorMSM" ColumnName="NotificaPorMSM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Modulos">
+            <EntityTypeMapping TypeName="IntelControlModel.tbl_Modulos">
+              <MappingFragment StoreEntitySet="tbl_Modulos">
+                <ScalarProperty Name="IdModulo" ColumnName="IdModulo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ModulosXPerfil">
+            <EntityTypeMapping TypeName="IntelControlModel.tbl_ModulosXPerfil">
+              <MappingFragment StoreEntitySet="tbl_ModulosXPerfil">
+                <ScalarProperty Name="IdModuloXPerfil" ColumnName="IdModuloXPerfil" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdModulo" ColumnName="IdModulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Perfiles">
+            <EntityTypeMapping TypeName="IntelControlModel.tbl_Perfiles">
+              <MappingFragment StoreEntitySet="tbl_Perfiles">
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Sedes">
+            <EntityTypeMapping TypeName="IntelControlModel.tbl_Sedes">
+              <MappingFragment StoreEntitySet="tbl_Sedes">
+                <ScalarProperty Name="IdSede" ColumnName="IdSede" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_TipoMedidas">
+            <EntityTypeMapping TypeName="IntelControlModel.tbl_TipoMedidas">
+              <MappingFragment StoreEntitySet="tbl_TipoMedidas">
+                <ScalarProperty Name="IdTipoMedida" ColumnName="IdTipoMedida" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_UltimasMedidas">
+            <EntityTypeMapping TypeName="IntelControlModel.tbl_UltimasMedidas">
+              <MappingFragment StoreEntitySet="tbl_UltimasMedidas">
+                <ScalarProperty Name="MedidaID" ColumnName="MedidaID" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="DispositivoID" ColumnName="DispositivoID" />
+                <ScalarProperty Name="UltimaAlerta" ColumnName="UltimaAlerta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Umbrales">
+            <EntityTypeMapping TypeName="IntelControlModel.tbl_Umbrales">
+              <MappingFragment StoreEntitySet="tbl_Umbrales">
+                <ScalarProperty Name="IdUmbral" ColumnName="IdUmbral" />
+                <ScalarProperty Name="Temperatura_min" ColumnName="Temperatura_min" />
+                <ScalarProperty Name="Temperatura_max" ColumnName="Temperatura_max" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Fecha_inicio" ColumnName="Fecha_inicio" />
+                <ScalarProperty Name="IdDispositivo" ColumnName="IdDispositivo" />
+                <ScalarProperty Name="Tolerancia_min" ColumnName="Tolerancia_min" />
+                <ScalarProperty Name="Tolerancia_max" ColumnName="Tolerancia_max" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Usuarios">
+            <EntityTypeMapping TypeName="IntelControlModel.tbl_Usuarios">
+              <MappingFragment StoreEntitySet="tbl_Usuarios">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdSede" ColumnName="IdSede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

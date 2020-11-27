@@ -28,17 +28,7 @@ namespace Tempsense.Bussines.Implementacion.Login
 
                 if (resultUser != null)
                 {
-                    var sesion = this._ILoginInterfazData.ValidarSessionUsuario(sessionUsuario);
-                    if (sesion)
-                    {
-                        return this._ILoginInterfazData.CrearSessionUsuario(sessionUsuario);  
-                    } 
-                    else
-                    {
-                        LoginReturnDto objlogin = new LoginReturnDto();
-                        objlogin.Mensaje = "Ya hay una sesion en otro dispositivo para este usuario";
-                        return objlogin;
-                    }
+                     return this._ILoginInterfazData.CrearSessionUsuario(sessionUsuario);  
                 } 
                 else
                 {
@@ -58,6 +48,18 @@ namespace Tempsense.Bussines.Implementacion.Login
             try
             {
                 return this._ILoginInterfazData.CerrarSesionUsuario(objLogin);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
+        public bool ValidarSessionUsuario(ValidatorSesionDto validator)
+        {
+            try
+            {
+                return this._ILoginInterfazData.ValidarSessionUsuario(validator);
             }
             catch (Exception ax)
             {

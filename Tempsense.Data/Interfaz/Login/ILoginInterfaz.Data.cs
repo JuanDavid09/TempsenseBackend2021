@@ -13,7 +13,7 @@ namespace Tempsense.Data.Interfaz.Login
         UsuariosDto ValidarExistenciaUsuario(ObjetoSesion sessionUsuario);
         LoginReturnDto CrearSessionUsuario(ObjetoSesion sessionUsuario);
         bool CerrarSesionUsuario(LoginDto objLogin);
-        bool ValidarSessionUsuario(ObjetoSesion sessionUsuario);
+        bool ValidarSessionUsuario(ValidatorSesionDto validator);
 
     }
 }

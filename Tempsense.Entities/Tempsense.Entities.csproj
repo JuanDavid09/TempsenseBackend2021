@@ -53,77 +53,84 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelTempsense.Context.cs">
+    <Compile Include="IntelControl.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTempsense.Context.tt</DependentUpon>
+      <DependentUpon>IntelControl.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelTempsense.cs">
+    <Compile Include="IntelControl.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTempsense.tt</DependentUpon>
+      <DependentUpon>IntelControl.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelTempsense.Designer.cs">
+    <Compile Include="IntelControl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelTempsense.edmx</DependentUpon>
+      <DependentUpon>IntelControl.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SesionesXUsuario.cs">
-      <DependentUpon>ModelTempsense.tt</DependentUpon>
+      <DependentUpon>IntelControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Bitacoras.cs">
+      <DependentUpon>IntelControl.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Dispositivos.cs">
-      <DependentUpon>ModelTempsense.tt</DependentUpon>
+      <DependentUpon>IntelControl.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Empresas.cs">
-      <DependentUpon>ModelTempsense.tt</DependentUpon>
+      <DependentUpon>IntelControl.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Modulos.cs">
-      <DependentUpon>ModelTempsense.tt</DependentUpon>
+      <DependentUpon>IntelControl.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_ModulosXPerfil.cs">
-      <DependentUpon>ModelTempsense.tt</DependentUpon>
+      <DependentUpon>IntelControl.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Perfiles.cs">
-      <DependentUpon>ModelTempsense.tt</DependentUpon>
+      <DependentUpon>IntelControl.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Sedes.cs">
-      <DependentUpon>ModelTempsense.tt</DependentUpon>
+      <DependentUpon>IntelControl.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_TipoMedidas.cs">
-      <DependentUpon>ModelTempsense.tt</DependentUpon>
+      <DependentUpon>IntelControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_UltimasMedidas.cs">
+      <DependentUpon>IntelControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Umbrales.cs">
+      <DependentUpon>IntelControl.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_Usuarios.cs">
-      <DependentUpon>ModelTempsense.tt</DependentUpon>
+      <DependentUpon>IntelControl.tt</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="ModelTempsense.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelTempsense.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="ModelTempsense.edmx.diagram">
-      <DependentUpon>ModelTempsense.edmx</DependentUpon>
+    <EntityDeploy Include="IntelControl.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IntelControl.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="IntelControl.edmx.diagram">
+      <DependentUpon>IntelControl.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModelTempsense.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelTempsense.Context.cs</LastGenOutput>
-      <DependentUpon>ModelTempsense.edmx</DependentUpon>
-    </Content>
-    <Content Include="ModelTempsense.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelTempsense.edmx</DependentUpon>
-      <LastGenOutput>ModelTempsense.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="IntelControl.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IntelControl.edmx</DependentUpon>
+      <LastGenOutput>IntelControl.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="IntelControl.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IntelControl.edmx</DependentUpon>
+      <LastGenOutput>IntelControl.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
