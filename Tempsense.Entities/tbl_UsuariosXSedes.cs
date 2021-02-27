@@ -12,15 +12,13 @@ namespace Tempsense.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_ModulosXPerfil
+    public partial class tbl_UsuariosXSedes
     {
-        public int IdModuloXPerfil { get; set; }
-        public int IdPerfil { get; set; }
-        public int IdEmpresa { get; set; }
-        public int IdModulo { get; set; }
+        public int IdUsuariosSedes { get; set; }
+        public int IdUsuario { get; set; }
+        public int IdSede { get; set; }
     
-        public virtual tbl_Modulos tbl_Modulos { get; set; }
-        public virtual tbl_Perfiles tbl_Perfiles { get; set; }
-        public virtual tbl_Empresas tbl_Empresas { get; set; }
+        public virtual tbl_Sedes tbl_Sedes { get; set; }
+        public virtual tbl_Usuarios tbl_Usuarios { get; set; }
     }
 }

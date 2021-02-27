@@ -21,6 +21,38 @@ namespace Tempsense.Data.Implementacion.Dispositivos
             return Mapper.Map<List<DispositivosDto>>(resutlSave);
         }
 
+        public List<DispositivosDto> ListarDispositivosAllUser(int IdUserCompany)
+        {
+            var resutlSave = (from us in _interlControlEntitie.tbl_Usuarios
+                              join uxs in _interlControlEntitie.tbl_UsuariosXSedes on us.IdUsuario equals uxs.IdUsuario
+                              join se in _interlControlEntitie.tbl_Sedes on uxs.IdSede equals se.IdSede
+                              join di in _interlControlEntitie.tbl_Dispositivos on se.IdSede equals di.IdSede
+                              where us.IdUsuario == IdUserCompany
+                              select di).ToList();
+
+            return Mapper.Map<List<DispositivosDto>>(resutlSave);
+        }
+
+        public List<DispositivosDto> ListarDispositivosAllSede(int IdSedeUser)
+        {
+
+            var resutlSave = (from us in _interlControlEntitie.tbl_Usuarios
+                              join uxs in _interlControlEntitie.tbl_UsuariosXSedes on us.IdUsuario equals uxs.IdUsuario
+                              join se in _interlControlEntitie.tbl_Sedes on uxs.IdSede equals se.IdSede
+                              join di in _interlControlEntitie.tbl_Dispositivos on se.IdSede equals di.IdSede
+                              where se.IdSede == IdSedeUser
+                              group di by new { di.IdDispositivo, di.Nombre, di.IdTipoMedida, di.TiempoNotificacion, di.Activo, di.IdSede } into grupo
+                              select new DispositivosDto {
+                                  Activo = grupo.Key.Activo,
+                                  IdDispositivo = grupo.Key.IdDispositivo,
+                                  IdSede = grupo.Key.IdSede,
+                                  IdTipoMedida = grupo.Key.IdTipoMedida,
+                                  Nombre = grupo.Key.Nombre,
+                                  TiempoNotificacion = grupo.Key.TiempoNotificacion
+                              }).ToList();
+            return (resutlSave);
+        }
+
         //public List<UmbralesDto> ListarSedeId(int idSede)
         //{
         //    var resutlSave = _interlControlEntitie.tbl_Umbrales.Where(c => c.Id == idSede).ToList();

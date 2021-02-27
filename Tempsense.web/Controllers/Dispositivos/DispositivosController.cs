@@ -36,6 +36,34 @@ namespace Tempsense.web.Controllers.Dispositivos
             }
         }
 
+        [HttpGet]
+        [Route("GetAllDispositivosUser")]
+        public HttpResponseMessage GetAllDispositivosUser(int Id)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, this._IDispositivosInterfazBussines.ListarDispositivosAllUser(Id));
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetAllDispositivosSede")]
+        public HttpResponseMessage ListarDispositivosAllSede(int Id)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, this._IDispositivosInterfazBussines.ListarDispositivosAllSede(Id));
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
         [HttpPost]
         [Route("CrearDispositivo")]
         public HttpResponseMessage CrearDispositivo(DispositivosDto dispoDto)

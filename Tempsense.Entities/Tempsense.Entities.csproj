@@ -105,6 +105,9 @@
     <Compile Include="tbl_Usuarios.cs">
       <DependentUpon>IntelControl.tt</DependentUpon>
     </Compile>
+    <Compile Include="tbl_UsuariosXSedes.cs">
+      <DependentUpon>IntelControl.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

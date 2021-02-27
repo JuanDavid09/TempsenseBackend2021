@@ -10,8 +10,8 @@ namespace Tempsense.Entities.Dtos.Dtos.Bitacoras
     {
         public int IdBitacora { get; set; }
         public DateTime? Fecha { get; set; }
-        public DateTime? HoraInicio { get; set; }
-        public DateTime? HoraFin { get; set; }
+        public DateTime HoraInicio { get; set; }
+        public DateTime HoraFin { get; set; }
         public string Problema { get; set; }
         public string Solucion { get; set; }
         public int IdDispositivo { get; set; }

@@ -30,6 +30,18 @@ namespace Tempsense.Bussines.Implementacion.Bitacora
             }
         }
 
+        public List<BitacorasDto> ListarBitacorasAllUser(int IdUserCompany)
+        {
+            try
+            {
+                return this._IBitacoraInterfazData.ListarBitacorasAllUser(IdUserCompany);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
         //public List<DispositivosDto> ListarSedeId(int idSede)
         //{
         //    try

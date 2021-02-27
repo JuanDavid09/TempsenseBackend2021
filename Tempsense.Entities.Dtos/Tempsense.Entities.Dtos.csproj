@@ -45,10 +45,12 @@
     <Compile Include="Dtos\Dispositivos\Dispositivos.Dto.cs" />
     <Compile Include="Dtos\Empresas\EmpresasDto.cs" />
     <Compile Include="Dtos\Login\LoginDto.cs" />
+    <Compile Include="Dtos\Maestros\Reportes.Dto.cs" />
     <Compile Include="Dtos\Maestros\TipoMedidasDto.cs" />
     <Compile Include="Dtos\Perfiles\PerfilesDto.cs" />
     <Compile Include="Dtos\Sedes\Sedes.Dto.cs" />
     <Compile Include="Dtos\Usuarios\UsuariosDto.cs" />
+    <Compile Include="Dtos\Usuarios\UsuariosXSedeDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

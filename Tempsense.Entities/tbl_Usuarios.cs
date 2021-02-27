@@ -14,6 +14,12 @@ namespace Tempsense.Entities
     
     public partial class tbl_Usuarios
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbl_Usuarios()
+        {
+            this.tbl_UsuariosXSedes = new HashSet<tbl_UsuariosXSedes>();
+        }
+    
         public int IdUsuario { get; set; }
         public string Nombre { get; set; }
         public string Passwords { get; set; }
@@ -21,9 +27,10 @@ namespace Tempsense.Entities
         public int IdEmpresa { get; set; }
         public int IdPerfil { get; set; }
         public string Email { get; set; }
-        public int IdSede { get; set; }
     
         public virtual tbl_Empresas tbl_Empresas { get; set; }
         public virtual tbl_Perfiles tbl_Perfiles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_UsuariosXSedes> tbl_UsuariosXSedes { get; set; }
     }
 }

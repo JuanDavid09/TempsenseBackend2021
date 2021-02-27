@@ -18,6 +18,7 @@ namespace Tempsense.Entities
         public tbl_Sedes()
         {
             this.tbl_Dispositivos = new HashSet<tbl_Dispositivos>();
+            this.tbl_UsuariosXSedes = new HashSet<tbl_UsuariosXSedes>();
         }
     
         public int IdSede { get; set; }
@@ -27,5 +28,7 @@ namespace Tempsense.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_Dispositivos> tbl_Dispositivos { get; set; }
         public virtual tbl_Empresas tbl_Empresas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_UsuariosXSedes> tbl_UsuariosXSedes { get; set; }
     }
 }

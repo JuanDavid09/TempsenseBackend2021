@@ -10,7 +10,7 @@ namespace Tempsense.Entities.Dtos.Dtos.Empresas
     {
         public int IdEmpresa { get; set; }
         public string Nombre { get; set; }
-        public string Abr_Empresa { get; set; }
+        public string AbrEmpresa { get; set; }
         public string Nit { get; set; }
         public string Correo { get; set; }
         public bool Activo { get; set; }
