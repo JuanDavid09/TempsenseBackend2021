@@ -10,6 +10,7 @@ namespace Tempsense.Bussines.Interfaz.Umbral
     public interface IUmbralInterfazBussines
     {
         List<UmbralesDto> ListarUmbralesAll();
+        List<UmbralesDto> ListarUmbralesAllUser(int IdUser);
         bool EditarUmbralId(UmbralesDto umbralDto);
         bool EliminarUmbral(int idUmbral);
         UmbralesDto CrearUmbral(UmbralesDto umbralDto);

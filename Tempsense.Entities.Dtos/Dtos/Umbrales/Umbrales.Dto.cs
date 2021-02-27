@@ -13,8 +13,8 @@ namespace Tempsense.Entities.Dtos.Dtos.Umbrales
         public decimal Temperatura_max { get; set; }
         public DateTime Fecha_inicio { get; set; }
         public int IdDispositivo { get; set; }
-        public decimal? Tolerancia_min { get; set; }
-        public decimal? Tolerancia_max { get; set; }
+        public decimal? ToleranciaMin { get; set; }
+        public decimal? ToleranciaMax { get; set; }
 
     }
 }

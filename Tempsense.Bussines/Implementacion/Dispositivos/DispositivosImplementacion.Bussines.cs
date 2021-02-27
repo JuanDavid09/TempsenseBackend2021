@@ -28,6 +28,30 @@ namespace Tempsense.Bussines.Implementacion.Dispositivos
             }
         }
 
+        public List<DispositivosDto> ListarDispositivosAllUser(int IdUser)
+        {
+            try
+            {
+                return this._IDispositivosInterfazData.ListarDispositivosAllUser(IdUser);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
+        public List<DispositivosDto> ListarDispositivosAllSede(int IdSedeUser)
+        {
+            try
+            {
+                return this._IDispositivosInterfazData.ListarDispositivosAllSede(IdSedeUser);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
         //public List<DispositivosDto> ListarSedeId(int idSede)
         //{
         //    try

@@ -10,6 +10,7 @@ namespace Tempsense.Bussines.Interfaz.Bitacora
     public interface IBitacoraInterfazBussines
     {
         List<BitacorasDto> ListarBitacorasAll();
+        List<BitacorasDto> ListarBitacorasAllUser(int IdUserCompany);
         bool EditarBitacoraId(BitacorasDto bitacoraDto);
         bool EliminarBitacora(int idBitacora);
         BitacorasDto CrearBitacora(BitacorasDto bitacoraDto);

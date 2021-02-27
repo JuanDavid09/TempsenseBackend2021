@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\RYZEN\Documents\New_Project_Tempsense\fjblanco1990\Tempsense.Backend\Tempsense.Entities\IntelControl.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\Francisco Blanco\Documents\Trabajos Externos\Tempsense.Backend\Tempsense.Entities\IntelControl.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

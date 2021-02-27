@@ -29,6 +29,18 @@ namespace Tempsense.Bussines.Implementacion.Umbral
             }
         }
 
+        public List<UmbralesDto> ListarUmbralesAllUser(int IdUser)
+        {
+            try
+            {
+                return this._IUmbralInterfazData.ListarUmbralesAllUser(IdUser);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
         //public List<DispositivosDto> ListarSedeId(int idSede)
         //{
         //    try

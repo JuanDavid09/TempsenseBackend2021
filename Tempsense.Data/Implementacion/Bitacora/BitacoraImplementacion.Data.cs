@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tempsense.Data.Interfaz.Bitacora;
 using Tempsense.Entities;
 using Tempsense.Entities.Dtos.Dtos.Bitacoras;
@@ -20,11 +18,17 @@ namespace Tempsense.Data.Implementacion.Bitacora
             return Mapper.Map<List<BitacorasDto>>(resutlSave);
         }
 
-        //public List<UmbralesDto> ListarSedeId(int idSede)
-        //{
-        //    var resutlSave = _interlControlEntitie.tbl_Umbrales.Where(c => c.Id == idSede).ToList();
-        //    return Mapper.Map<List<UmbralesDto>>(resutlSave);
-        //}
+        public List<BitacorasDto> ListarBitacorasAllUser(int IdUserCompany)
+        {
+            var resutlSave = (from us in _interlControlEntitie.tbl_Usuarios
+                              join uxs in _interlControlEntitie.tbl_UsuariosXSedes on us.IdUsuario equals uxs.IdUsuario
+                              join se in _interlControlEntitie.tbl_Sedes on uxs.IdSede equals se.IdSede
+                              join di in _interlControlEntitie.tbl_Dispositivos on se.IdSede equals di.IdSede
+                              join bt in _interlControlEntitie.tbl_Bitacoras on di.IdDispositivo equals bt.IdDispositivo
+                              where us.IdUsuario == IdUserCompany
+                              select bt).ToList();
+            return Mapper.Map<List<BitacorasDto>>(resutlSave);
+        }
 
         public bool EditarBitacoraId(BitacorasDto bitacoraDto)
         {
@@ -53,6 +57,7 @@ namespace Tempsense.Data.Implementacion.Bitacora
         public BitacorasDto CrearBitacora(BitacorasDto bitacoraDto)
         {
             var bitacoraTbl = Mapper.Map<tbl_Bitacoras>(bitacoraDto);
+            bitacoraTbl.guardadodebitacora = DateTime.Now;
             var resutlSave = _interlControlEntitie.tbl_Bitacoras.Add(bitacoraTbl);
             _interlControlEntitie.SaveChanges();
             var empresadto = Mapper.Map<BitacorasDto>(resutlSave);
