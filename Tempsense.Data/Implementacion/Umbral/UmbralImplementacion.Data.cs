@@ -65,9 +65,10 @@ namespace Tempsense.Data.Implementacion.Umbral
 
         public UmbralesDto CrearUmbral(UmbralesDto umbralDto)
         {
-            umbralDto.FechaInicio = DateTime.Now;
-            umbralDto.Activo = true;
+
             var umbralTbl = Mapper.Map<tbl_Umbrales>(umbralDto);
+            umbralTbl.Activo = true;
+            umbralTbl.Fecha_inicio = DateTime.Now;
             var resutlSave = _interlControlEntitie.tbl_Umbrales.Add(umbralTbl);
             _interlControlEntitie.SaveChanges();
             var empresadto = Mapper.Map<UmbralesDto>(resutlSave);
