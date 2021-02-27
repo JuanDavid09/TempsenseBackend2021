@@ -35,6 +35,21 @@ namespace Tempsense.web.Controllers.Umbrales
             }
         }
 
+        [HttpGet]
+        [Route("GetAllUmbralesUser")]
+        public HttpResponseMessage GetAllUmbralesUser(int Id)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, this._IUmbralInterfazBussines.ListarUmbralesAllUser(Id));
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+
         [HttpPost]
         [Route("CrearUmbral")]
         public HttpResponseMessage CrearUmbral(UmbralesDto umbralDto)

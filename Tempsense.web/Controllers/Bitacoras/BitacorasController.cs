@@ -36,6 +36,20 @@ namespace Tempsense.web.Controllers.Bitacoras
             }
         }
 
+        [HttpGet]
+        [Route("GetAllBitacorasUser")]
+        public HttpResponseMessage ListarBitacorasAllUser(int Id)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, this._IBitacoraInterfazBussines.ListarBitacorasAllUser(Id));
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
         [HttpPost]
         [Route("CrearBitacora")]
         public HttpResponseMessage CrearBitacora(BitacorasDto bitacoraDto)

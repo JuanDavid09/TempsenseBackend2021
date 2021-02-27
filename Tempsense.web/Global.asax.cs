@@ -37,7 +37,8 @@ namespace Tempsense.web
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<UsuariosDto, tbl_Usuarios>().ForMember(g => g.tbl_Empresas, opt => opt.Ignore())
-                                                          .ForMember(g => g.tbl_Perfiles, opt => opt.Ignore());
+                                                          .ForMember(g => g.tbl_Perfiles, opt => opt.Ignore())
+                                                          .ForMember(g => g.tbl_UsuariosXSedes, opt => opt.Ignore());
                 cfg.CreateMap<tbl_Usuarios, UsuariosDto>();
 
                 cfg.CreateMap<EmpresasDto, tbl_Empresas>().ForMember(g => g.tbl_Sedes, opt => opt.Ignore())
@@ -79,6 +80,12 @@ namespace Tempsense.web
 
                 cfg.CreateMap<TipoMedidasDto, tbl_TipoMedidas>().ForMember(g => g.tbl_Dispositivos, opt => opt.Ignore());
                 cfg.CreateMap<tbl_TipoMedidas, TipoMedidasDto>();
+
+                cfg.CreateMap<UsuariosXSedeDto, tbl_UsuariosXSedes>().ForMember(g => g.tbl_Sedes, opt => opt.Ignore())
+                                                                     .ForMember(g => g.tbl_Usuarios, opt => opt.Ignore());
+                cfg.CreateMap<tbl_UsuariosXSedes, UsuariosXSedeDto>();
+
+                
 
             });
         }

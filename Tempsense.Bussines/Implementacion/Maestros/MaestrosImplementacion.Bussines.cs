@@ -28,5 +28,41 @@ namespace Tempsense.Bussines.Implementacion.Maestros
                 throw new ArgumentException(ax.Message, ax);
             }
         }
+
+        public List<ReportesDto> GetDataReport(int ususario)
+        {
+            try
+            {
+                return this._IMaestrosInterfazData.GetDataReport(ususario);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
+        public List<ReportesDto> ListarDataReporteFiltro(int ususario, int dispo, DateTime inicio, DateTime fin, int filtro)
+        {
+            try
+            {
+                return this._IMaestrosInterfazData.ListarDataReporteFiltro(ususario, dispo, inicio, fin, filtro);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
+        public List<ReportesDto> GetDataReporteFiltros(int ususario, int dispo, DateTime inicio, DateTime fin)
+        {
+            try
+            {
+                return this._IMaestrosInterfazData.GetDataReporteFiltros(ususario, dispo, inicio, fin);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
     }
 }

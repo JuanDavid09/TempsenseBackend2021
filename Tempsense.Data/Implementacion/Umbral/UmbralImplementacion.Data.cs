@@ -20,6 +20,20 @@ namespace Tempsense.Data.Implementacion.Umbral
             return Mapper.Map<List<UmbralesDto>>(resutlSave);
         }
 
+        public List<UmbralesDto> ListarUmbralesAllUser(int IdUserCompany)
+        {
+            var resutlSave = (from us in _interlControlEntitie.tbl_Usuarios
+                              join uxs in _interlControlEntitie.tbl_UsuariosXSedes on us.IdUsuario equals uxs.IdUsuario
+                              join se in _interlControlEntitie.tbl_Sedes on uxs.IdSede equals se.IdSede
+                              join di in _interlControlEntitie.tbl_Dispositivos on se.IdSede equals di.IdSede
+                              join um in _interlControlEntitie.tbl_Umbrales on di.IdDispositivo equals um.IdDispositivo
+                              where us.IdUsuario ==  IdUserCompany
+                              select um).ToList();
+
+
+            return Mapper.Map<List<UmbralesDto>>(resutlSave);
+        }
+
         //public List<UmbralesDto> ListarSedeId(int idSede)
         //{
         //    var resutlSave = _interlControlEntitie.tbl_Umbrales.Where(c => c.Id == idSede).ToList();
@@ -28,11 +42,12 @@ namespace Tempsense.Data.Implementacion.Umbral
 
         public bool EditarUmbralId(UmbralesDto umbralDto)
         {
+
             var resutlSave = _interlControlEntitie.tbl_Umbrales.Where(c => c.IdUmbral == umbralDto.IdUmbral).FirstOrDefault();
-            resutlSave.Temperatura_max = umbralDto.Temperatura_max;
-            resutlSave.Temperatura_min = umbralDto.Temperatura_min;
-            resutlSave.Tolerancia_max = umbralDto.Tolerancia_max;
-            resutlSave.Tolerancia_min = umbralDto.Tolerancia_min;
+            resutlSave.TemperaturaMax = umbralDto.TemperaturaMax;
+            resutlSave.TemperaturaMin = umbralDto.TemperaturaMin;
+            resutlSave.ToleranciaMax = umbralDto.TemperaturaMax;
+            resutlSave.ToleranciaMin = umbralDto.ToleranciaMin;
             resutlSave.IdDispositivo = umbralDto.IdDispositivo;
 
             _interlControlEntitie.SaveChanges();
@@ -50,6 +65,8 @@ namespace Tempsense.Data.Implementacion.Umbral
 
         public UmbralesDto CrearUmbral(UmbralesDto umbralDto)
         {
+            umbralDto.FechaInicio = DateTime.Now;
+            umbralDto.Activo = true;
             var umbralTbl = Mapper.Map<tbl_Umbrales>(umbralDto);
             var resutlSave = _interlControlEntitie.tbl_Umbrales.Add(umbralTbl);
             _interlControlEntitie.SaveChanges();

@@ -31,7 +31,7 @@ namespace Tempsense.Data.Implementacion.Empresas
             var resutlSave = _interlControlEntitie.tbl_Empresas.Where(c => c.IdEmpresa == empresasDto.IdEmpresa).FirstOrDefault();
             resutlSave.Nombre = empresasDto.Nombre;
             resutlSave.Nit = empresasDto.Nit;
-            resutlSave.Abr_Empresa = empresasDto.Abr_Empresa;
+            resutlSave.AbrEmpresa = empresasDto.AbrEmpresa;
             resutlSave.Activo = empresasDto.Activo;
             resutlSave.NotificaPorCorreo = empresasDto.NotificaPorCorreo;
             resutlSave.NotificaPorMSM = empresasDto.NotificaPorMSM;
@@ -57,8 +57,6 @@ namespace Tempsense.Data.Implementacion.Empresas
             var empresadto = Mapper.Map<EmpresasDto>(resutlSave);
             return empresadto;
         }
-
-
 
     }
 }

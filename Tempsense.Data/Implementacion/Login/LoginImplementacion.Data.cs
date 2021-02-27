@@ -31,7 +31,7 @@ namespace Tempsense.Data.Implementacion.Login
             objLoginSession.FechaInicioSesion = System.DateTime.Now;
             objLoginSession.Token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
             objLoginSession.IdEmpresa = objUsuario.IdEmpresa;
-            objLoginSession.IdSede = objUsuario.IdSede;
+            objLoginSession.IdSede = 0;
             objLoginSession.IdPerfil = objUsuario.IdPerfil;
             
             var objSession = Mapper.Map<SesionesXUsuario>(objLoginSession);

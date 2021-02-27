@@ -29,6 +29,43 @@ namespace Tempsense.Bussines.Implementacion.Usuarios
             }
         }
 
+        public bool EditarUsuario(UsuariosDto userDto)
+        {
+            try
+            {
+                return this._IUsuariosInterfazData.EditarUsuario(userDto);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
+        public bool EliminarUsuario(int IdUser)
+        {
+            try
+            {
+                return this._IUsuariosInterfazData.EliminarUsuario(IdUser);
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
+        public List<UsuariosStrDto> GetAllUsuarios()
+        {
+            try
+            {
+                return this._IUsuariosInterfazData.GetAllUsuarios();
+            }
+            catch (Exception ax)
+            {
+                throw new ArgumentException(ax.Message, ax);
+            }
+        }
+
+
         public UsuariosDto ValidarEmailUser(string email)
         {
             try

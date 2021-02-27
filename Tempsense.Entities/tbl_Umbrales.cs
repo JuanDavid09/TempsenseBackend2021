@@ -15,13 +15,13 @@ namespace Tempsense.Entities
     public partial class tbl_Umbrales
     {
         public int IdUmbral { get; set; }
-        public decimal Temperatura_min { get; set; }
-        public decimal Temperatura_max { get; set; }
+        public decimal TemperaturaMin { get; set; }
+        public decimal TemperaturaMax { get; set; }
         public bool Activo { get; set; }
-        public System.DateTime Fecha_inicio { get; set; }
+        public System.DateTime FechaInicio { get; set; }
         public int IdDispositivo { get; set; }
-        public Nullable<decimal> Tolerancia_min { get; set; }
-        public Nullable<decimal> Tolerancia_max { get; set; }
+        public Nullable<decimal> ToleranciaMin { get; set; }
+        public Nullable<decimal> ToleranciaMax { get; set; }
     
         public virtual tbl_Dispositivos tbl_Dispositivos { get; set; }
     }

@@ -73,12 +73,12 @@ namespace Tempsense.Bussines.Implementacion.Empresas
         {
             try
             {
-
                 return this._IEmpresasInterfazData.EliminarEmpresa(idEmpresa);
             }
             catch (Exception ax)
             {
-                throw new ArgumentException(ax.Message, ax);
+                return false;
+                throw new ArgumentException(ax.Message, ax.InnerException.InnerException.Message);
             }
         }
     }

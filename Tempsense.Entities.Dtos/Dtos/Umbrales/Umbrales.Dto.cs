@@ -9,13 +9,13 @@ namespace Tempsense.Entities.Dtos.Dtos.Umbrales
     public class UmbralesDto
     {
         public int IdUmbral { get; set; }
-        public decimal Temperatura_min { get; set; }
-        public decimal Temperatura_max { get; set; }
+        public decimal TemperaturaMin { get; set; }
+        public decimal TemperaturaMax { get; set; }
         public bool Activo { get; set; }
-        public DateTime Fecha_inicio { get; set; }
+        public DateTime FechaInicio { get; set; }
         public int IdDispositivo { get; set; }
-        public decimal? Tolerancia_min { get; set; }
-        public decimal? Tolerancia_max { get; set; }
+        public decimal? ToleranciaMin { get; set; }
+        public decimal? ToleranciaMax { get; set; }
 
     }
 }

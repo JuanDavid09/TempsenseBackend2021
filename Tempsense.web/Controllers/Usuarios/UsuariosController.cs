@@ -42,5 +42,47 @@ namespace Tempsense.web.Controllers.Usuarios
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("EliminarUsuario")]
+        public HttpResponseMessage EliminarUsuario(int id)
+        {
+            try
+            {
+              return Request.CreateResponse(HttpStatusCode.OK, this._IUsuarioInterfazBussines.EliminarUsuario(id));
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetAllUsuarios")]
+        public HttpResponseMessage GetAllUsuarios()
+        {
+            try
+            {
+             return Request.CreateResponse(HttpStatusCode.OK, this._IUsuarioInterfazBussines.GetAllUsuarios());
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("EditarUsuario")]
+        public HttpResponseMessage EditarUsuario(UsuariosDto userDto)
+        {
+            try
+            {
+               return Request.CreateResponse(HttpStatusCode.OK, this._IUsuarioInterfazBussines.EditarUsuario(userDto));
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
     }
 }
